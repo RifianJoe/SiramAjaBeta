@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseBlack"
+    android:padding="20dp"
+    tools:context=".walkthrough">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        >
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/btnWalkthrough"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/baseWhite"
+            android:text="Yuk Cobain"
+            android:visibility="invisible"
+            android:onClick="pindahDaftar"
+            android:background="@drawable/btn_stroke"/>
+
+
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="30dp"
+            android:textColor="@color/baseYellow"
+            android:text="Selanjutnya"
+            android:background="@drawable/btn_stroke"
+
+            />
+        <LinearLayout
+            android:id="@+id/titik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="20dp"
+            android:orientation="horizontal"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

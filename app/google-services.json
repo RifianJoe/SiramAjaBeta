@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "617243543702",
+    "project_id": "siram-aja",
+    "storage_bucket": "siram-aja.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617243543702:android:19efc36242d3396d5d1ab7",
+        "android_client_info": {
+          "package_name": "com.rifiandev.siramaja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617243543702-h1kj64do5ji385a8ir8ld0dih1pbltui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEWH3-BGtRt23Z82q7waJSVs7MPanhHVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617243543702-h1kj64do5ji385a8ir8ld0dih1pbltui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
