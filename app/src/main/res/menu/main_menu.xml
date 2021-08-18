@@ -7,6 +7,13 @@
             />
     </group>
 
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_info"
+            android:title="Info App"
+            />
+    </group>
+
         <item
             android:title="Account">
             <menu>

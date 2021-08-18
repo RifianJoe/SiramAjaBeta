@@ -43,6 +43,7 @@
             android:paddingBottom="30dp"
             android:textColor="@color/baseYellow"
             android:text="Selanjutnya"
+            android:visibility="invisible"
             android:background="@drawable/btn_stroke"
 
             />

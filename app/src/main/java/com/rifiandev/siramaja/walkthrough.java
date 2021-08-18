@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class walkthrough extends AppCompatActivity {
 
     ViewPager viewPager;
@@ -21,6 +23,8 @@ public class walkthrough extends AppCompatActivity {
     TextView[] titik;
 
     Button cobain;
+
+    FirebaseAuth fAuth;
 
 
     @Override
@@ -39,6 +43,13 @@ public class walkthrough extends AppCompatActivity {
 
         addTitik(0);
         viewPager.addOnPageChangeListener(changeListener);
+
+        fAuth = FirebaseAuth.getInstance();
+
+        if(fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
 
 
     }

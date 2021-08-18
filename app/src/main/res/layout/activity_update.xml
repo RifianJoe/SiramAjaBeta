@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".update">
+
+    <ImageView
+        android:id="@+id/viewCameraUpdate"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:src="@color/baseYellow"
+        />
+
+    <Button
+        android:id="@+id/btnCameraUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewCameraUpdate"
+        android:text="Ambil Foto"
+        />
+
+
+    <EditText
+        android:id="@+id/txtTanamanUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnCameraUpdate"
+        android:hint="Nama Tanaman"
+        />
+
+    <TextView
+        android:id="@+id/intJamUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12.12 PM"
+        android:gravity="center"
+        android:layout_below="@id/txtTanamanUpdate"
+        />
+
+    <Button
+        android:id="@+id/btnPilihUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Waktu"
+        android:layout_below="@id/intJamUpdate"
+        />
+
+    <Button
+        android:id="@+id/btnAktifUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aktifkan Pewaktu"
+        android:layout_below="@id/btnPilihUpdate"
+        />
+
+    <Button
+        android:id="@+id/btnBatalUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Batalkan Pewaktu"
+        android:layout_below="@id/btnAktifUpdate"
+        />
+
+    <Button
+        android:id="@+id/btnUploadUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnBatalUpdate"
+        android:text="Update"
+        android:onClick="update"
+        />
+
+</RelativeLayout>

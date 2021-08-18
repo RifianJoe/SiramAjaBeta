@@ -88,10 +88,36 @@
         />
 
     <RelativeLayout
-        android:id="@+id/layoutDaftar"
+        android:id="@+id/layoutLupa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:id="@+id/txtLupa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lupa Password? "
+            android:textColor="@color/baseWhite"
+            />
+
+        <TextView
+            android:id="@+id/txtBtnLupa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txtLupa"
+            android:textColor="@color/baseYellow"
+            android:onClick="lupaBtn"
+            android:text="Reset Password"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutDaftar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/layoutLupa"
         android:layout_centerHorizontal="true">
         <TextView
             android:id="@+id/txtDaftar"
@@ -111,5 +137,7 @@
             android:text="Daftar"
             />
     </RelativeLayout>
+
+
 
 </RelativeLayout>

@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "617243543702",
-    "project_id": "siram-aja",
-    "storage_bucket": "siram-aja.appspot.com"
+    "project_number": "420221776336",
+    "firebase_url": "https://siram-aja-7728f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "siram-aja-7728f",
+    "storage_bucket": "siram-aja-7728f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:617243543702:android:19efc36242d3396d5d1ab7",
+        "mobilesdk_app_id": "1:420221776336:android:29802bb02a7c2dae3709d5",
         "android_client_info": {
           "package_name": "com.rifiandev.siramaja"
         }
       },
       "oauth_client": [
         {
-          "client_id": "617243543702-h1kj64do5ji385a8ir8ld0dih1pbltui.apps.googleusercontent.com",
+          "client_id": "420221776336-5t2bji09cl2o78ih6qens0obuicq4mvv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCEWH3-BGtRt23Z82q7waJSVs7MPanhHVQ"
+          "current_key": "AIzaSyCj7Q_5YaAxD3vpSearnjISaqkG582PofA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "617243543702-h1kj64do5ji385a8ir8ld0dih1pbltui.apps.googleusercontent.com",
+              "client_id": "420221776336-5t2bji09cl2o78ih6qens0obuicq4mvv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

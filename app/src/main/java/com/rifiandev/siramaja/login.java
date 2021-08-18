@@ -1,8 +1,10 @@
 package com.rifiandev.siramaja;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +27,7 @@ public class login extends AppCompatActivity {
     EditText edtemail,edtpassword;
     Button btnlogin;
     FirebaseAuth fAuth;
+    TextView lupaPass;
     ProgressBar progressBar;
 
     @Override
@@ -32,8 +37,14 @@ public class login extends AppCompatActivity {
         edtemail = findViewById(R.id.edtEmail);
         edtpassword = findViewById(R.id.edtPassword);
         btnlogin = findViewById(R.id.btnLogin);
+        lupaPass = findViewById(R.id.txtBtnLupa);
 
         fAuth = FirebaseAuth.getInstance();
+
+        if(fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +73,7 @@ public class login extends AppCompatActivity {
                             Toast.makeText(login.this,"Berhasil Masuk! ",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         } else {
-                            Toast.makeText(login.this,"Gagal Daftar! " +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(login.this,"Gagal Masuk! " +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -70,7 +81,48 @@ public class login extends AppCompatActivity {
         });
 
 
+    lupaPass.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            EditText resetpass = new EditText(v.getContext());
+            AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+            passwordResetDialog.setTitle("Reset Password ?");
+            passwordResetDialog.setMessage("Masukkan Email Kamu");
+            passwordResetDialog.setView(resetpass);
 
+            passwordResetDialog.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //extract email dan kirim link reset pass
+                    String mail = resetpass.getText().toString().trim();
+                    fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(login.this,"Link Reset Password telah terkirim ke email kamu.", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(login.this, "Error, silakan coba lagi nanti \nKeterangan : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+                }
+            });
+
+            passwordResetDialog.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //tutup dialog
+
+                }
+            });
+
+            passwordResetDialog.create().show();
+
+        }
+    });
     }
     /*public void pindahHome(View view){
         Button btn_pndhHome = (Button) findViewById(R.id.btnLogin);
@@ -86,4 +138,5 @@ public class login extends AppCompatActivity {
         Intent intent = new Intent (this, register.class);
         startActivity(intent);
     }
+
 }

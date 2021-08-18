@@ -10,7 +10,6 @@
     tools:openDrawer="start"
     >
 
-
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -19,49 +18,79 @@
         app:menu="@menu/main_menu"
         android:layout_gravity="start"
         />
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:layout_alignParentStart="true"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/ebonyBlack"
+            >
+            <RelativeLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/baseBlack"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                android:layout_alignParentStart="true"/>
-
-
+                android:background="#f6b010"
+                >
+             <TextView
+                 android:id="@+id/txtWelcome"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:text="Selamat Datang !"
+                 android:layout_margin="20dp"
+                 android:textColor="@color/black"
+                 android:textStyle="normal"
+                 android:textSize="20dp"
+                 />
 
             <TextView
+                android:id="@+id/headerMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="test"
+                android:text="Daftar Tanaman"
+                android:layout_below="@id/txtWelcome"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="30dp"
                 />
-            <TextView
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listTanaman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello World!" />
-
-
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Logout"
-                android:onClick="logout"/>
-
+                android:layout_below="@id/headerLayout"
+                android:layout_alignParentBottom="true"
+                />
         </RelativeLayout>
 
-
-
-    </ScrollView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnTambah"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            app:backgroundTint="@color/baseYellow"
+            app:fabCustomSize="60dp"
+            app:elevation="6dp"
+            android:src="@drawable/ic_outline_add_circle_24"
+            app:maxImageSize="60dp"
+            android:onClick="pindahTambah"
+            />
+    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
