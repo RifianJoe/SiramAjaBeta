@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,7 +74,7 @@ public class siramAdapter extends RecyclerView.Adapter<siramAdapter.ViewHolder> 
         //Picasso.get().load(srmModel.getFotoTanaman()).into(holder.imageView);
         String imageUri = null;
         imageUri = srmModel.getFotoTanaman();
-        Picasso.get().load(imageUri).placeholder(R.mipmap.ic_launcher).fit().centerCrop().rotate(90).into(holder.imageView);
+        Picasso.get().load(imageUri).placeholder(R.drawable.ic_baseline_photo_camera_24).fit().centerCrop().rotate(90).into(holder.imageView);
         holder.namaTanaman.setText(srmModel.getNamaTanaman());
         holder.pukulSiram.setText(srmModel.getJamSiram());
 
@@ -84,7 +85,7 @@ public class siramAdapter extends RecyclerView.Adapter<siramAdapter.ViewHolder> 
             }
         });*/
 
-        holder.cv.setOnClickListener(new View.OnClickListener() {
+        holder.btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onSelectData.onSelected(srmModel);
@@ -107,12 +108,12 @@ public class siramAdapter extends RecyclerView.Adapter<siramAdapter.ViewHolder> 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("child",""+databaseReference.child("Data").child(srmModel.getKey()));
+                Log.e("child",""+databaseReference.child(srmModel.getKey()));
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        databaseReference.child("Data").child(srmModel.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        databaseReference.child(srmModel.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(activity,"Berhasil Dihapus", Toast.LENGTH_LONG).show();
@@ -175,7 +176,8 @@ public class siramAdapter extends RecyclerView.Adapter<siramAdapter.ViewHolder> 
 
         TextView namaTanaman, pukulSiram;
         ImageView imageView;
-        FloatingActionButton btnDelete;
+        FloatingActionButton btnDelete,btnDetail;
+        SwitchCompat switchCompat;
         CardView cv;
 
         public ViewHolder(View itemView) {
@@ -186,6 +188,8 @@ public class siramAdapter extends RecyclerView.Adapter<siramAdapter.ViewHolder> 
         imageView = itemView.findViewById(R.id.imgTanaman);
         cv = itemView.findViewById(R.id.cvItem);
         btnDelete = itemView.findViewById(R.id.btnFloatHapus);
+        switchCompat = itemView.findViewById(R.id.switchAlarm);
+        btnDetail = itemView.findViewById(R.id.btnFloatDetail);
 
 
 

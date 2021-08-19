@@ -53,7 +53,9 @@
         android:textSize="24sp"
         android:layout_below="@id/text_login"
         android:background="@drawable/stroke"
-        android:hint="  Email"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:padding="10dp"
         />
 
     <EditText
@@ -68,7 +70,9 @@
         android:textSize="24sp"
         android:layout_below="@id/edtEmail"
         android:background="@drawable/stroke"
-        android:hint="  Password"
+        android:inputType="textWebPassword"
+        android:hint="Password"
+        android:padding="10dp"
         />
 
     <Button

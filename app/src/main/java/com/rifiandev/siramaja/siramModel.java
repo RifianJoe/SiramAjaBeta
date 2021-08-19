@@ -4,14 +4,21 @@ import java.io.Serializable;
 
 public class siramModel implements Serializable {
 
-    private String key, namaTanaman, fotoTanaman, jamSiram, users;
-    private int hourSiram, minuteSiram;
+    private String key;
+    private String namaTanaman;
+    private String fotoTanaman;
+    private String jamSiram;
+    private String users;
+    private String indicatorAlarm;
+    private int hourSiram;
+    private int minuteSiram;
 
     public siramModel(){
 
     }
 
-    public siramModel(String namaTanaman, String fotoTanaman, String jamSiram, String users, int hourSiram, int minuteSiram) {
+    public siramModel(String namaTanaman, String fotoTanaman, String jamSiram, String users, String indicatorAlarm, int hourSiram, int minuteSiram) {
+        super();
         if (namaTanaman.trim().equals("")){
             namaTanaman = "Tanpa Nama";
         }
@@ -19,6 +26,7 @@ public class siramModel implements Serializable {
         this.fotoTanaman = fotoTanaman;
         this.jamSiram = jamSiram;
         this.users = users;
+        this.indicatorAlarm = indicatorAlarm;
         this.hourSiram = hourSiram;
         this.minuteSiram = minuteSiram;
     }
@@ -41,6 +49,10 @@ public class siramModel implements Serializable {
 
     public String getUsers() {
         return users;
+    }
+
+    public String getIndicatorAlarm() {
+        return indicatorAlarm;
     }
 
     public int getHourSiram() {
@@ -69,6 +81,10 @@ public class siramModel implements Serializable {
 
     public void setUsers(String users) {
         this.users = users;
+    }
+
+    public void setIndicatorAlarm(String indicatorAlarm) {
+        this.indicatorAlarm = indicatorAlarm;
     }
 
     public void setHourSiram(int hourSiram) {

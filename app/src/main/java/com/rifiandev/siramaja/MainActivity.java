@@ -1,6 +1,7 @@
 package com.rifiandev.siramaja;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     RecyclerView recyclerView;
-    TextView header;
+    TextView header,txtWelcome;
     FloatingActionButton btnTambah, btnHapus;
 
     //ArrayList<User> arrayList;
@@ -52,13 +56,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseStorage firebaseStorage;
+    FirebaseFirestore fStore;
+
     siramAdapter srmAdapter;
     List<siramModel> sModelList = new ArrayList<>();
 
     //MyAdapter myAdapter;
 
-    String userId;
+    String userId, namaUser;
     FirebaseAuth fAuth;
+
+    public MainActivity(){
+
+    }
 
 
     @Override
@@ -70,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-        header = findViewById(R.id.headerMain);
+        header = findViewById(R.id.txtVerify);
+        txtWelcome = findViewById(R.id.txtWelcome);
         btnTambah = findViewById(R.id.btnTambah);
 
 
@@ -88,7 +99,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //users
         fAuth = FirebaseAuth.getInstance();
         userId = fAuth.getCurrentUser().getUid();
+
         user = fAuth.getCurrentUser();
+        fStore = FirebaseFirestore.getInstance();
 
         //rtdb
         recyclerView = findViewById(R.id.listTanaman);
@@ -107,19 +120,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(!user.isEmailVerified()) {
             header.setText("Silakan Verifikasi Email terlebih dahulu pada menu Profile \n agar bisa menggunakan fitur aplikasi ini :D");
+            header.setVisibility(View.VISIBLE);
             btnTambah.setVisibility(View.GONE);
+        } else {
+            DocumentReference documentReference = fStore.collection("users").document(userId);
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                    if(documentSnapshot.exists()) {
+                        txtWelcome.setText("Selamat Datang, " + documentSnapshot.getString("Nama")+"!");
+                    }else {
+                        txtWelcome.setText("Selamat Datang !");
+                        Log.d("tag","onEvent: Document do not exists");
+                    }
+                }
+            });
         }
 
-        databaseReference.child("Data").addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //sModelList = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     siramModel upload = dataSnapshot.getValue(siramModel.class);
                     upload.setKey((snapshot.getKey()));
                     sModelList.add(upload);
-
+                    srmAdapter.notifyDataSetChanged();
                 }
-                srmAdapter.notifyDataSetChanged();
+                //srmAdapter = new siramAdapter(MainActivity.this,sModelList,MainActivity.this,MainActivity.this);
+                //recyclerView.setAdapter(srmAdapter);
+
             }
 
             @Override
@@ -164,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.nav_home:
-                Intent intent = new Intent(MainActivity.this,camera.class);
+                Intent intent = new Intent(MainActivity.this,MainActivity.class);
                 startActivity(intent);
                 break;
             case R.id.nav_info:
@@ -197,11 +227,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.putExtra("uploadData", sModel);
         startActivity(intent);
     }
-
-    /*@Override
-    public void onSelected(siramModel sModel) {
-        Intent intent = new Intent(MainActivity.this,detail_wisata.class);
-        intent.putExtra("detailData", wModel);
-        startActivity(intent);
-    }*/
 }

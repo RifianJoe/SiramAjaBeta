@@ -64,7 +64,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "RifianDev")
                             .setSmallIcon(R.drawable.ic_logo)
                             .setContentTitle("Siram Aja Notification")
-                            .setContentText("Waktu Penyiraman (namaTanaman)" + namaTanaman)
+                            .setContentText("Yuk Siram Aja Sekarang")
                             .setAutoCancel(true)
                             .setSound(defaultSound)
                             .setDefaults(NotificationCompat.DEFAULT_ALL)

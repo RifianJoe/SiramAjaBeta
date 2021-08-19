@@ -19,6 +19,7 @@
         android:text="Siram Aja"
         android:textSize="24sp"
         android:fontFamily="@font/spookyhunter"
+        android:textColor="@color/baseWhite"
         />
 
 </LinearLayout>

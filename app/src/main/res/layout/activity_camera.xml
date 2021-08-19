@@ -4,8 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/baseBlack"
     android:padding="20dp"
     tools:context=".camera">
+
+    <TextView
+        android:id="@+id/txtTambahData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:textColor="@color/baseWhite"
+        android:text="Tambah Data"
+        android:textColorHint="@color/baseWhite"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:backgroundTint="@color/baseWhite"
+        />
 
     <ImageView
         android:id="@+id/viewCamera"
@@ -13,7 +30,19 @@
         android:layout_height="240dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:src="@color/baseYellow"
+        android:src="@drawable/ic_baseline_photo_camera_24"
+        android:scaleType="centerCrop"
+        android:layout_below="@id/txtTambahData"
+        />
+
+    <TextView
+        android:id="@+id/indicatorAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indicator"
+        android:visibility="gone"
+        android:layout_toRightOf="@id/viewCamera"
+        android:layout_marginLeft="10dp"
         />
 
     <Button
@@ -22,6 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/viewCamera"
         android:text="Ambil Foto"
+        android:backgroundTint="@color/ebonyBlack"
+        android:textColor="@color/baseWhite"
         />
 
 
@@ -30,48 +61,74 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnCamera"
+        android:textSize="18sp"
+        android:textColor="@color/baseWhite"
         android:hint="Nama Tanaman"
+        android:textColorHint="@color/baseWhite"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:backgroundTint="@color/baseWhite"
+
         />
 
-    <TextView
-        android:id="@+id/intJam"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/layoutAlarm"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12.12 PM"
-        android:gravity="center"
         android:layout_below="@id/txtTanaman"
-        />
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:id="@+id/intJam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12.12 PM"
+            android:textSize="24sp"
+            android:layout_margin="20dp"
+            android:textColor="@color/baseWhite"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/btnPilih"
+            android:visibility="gone"
+            />
 
-    <Button
-        android:id="@+id/btnPilih"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pilih Waktu"
-        android:layout_below="@id/intJam"
-        />
+        <Button
+            android:id="@+id/btnPilih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Waktu"
+            android:layout_marginTop="20dp"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/ebonyBlack"
+            android:textColor="@color/baseWhite"
 
-    <Button
-        android:id="@+id/btnAktif"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Aktifkan Pewaktu"
-        android:layout_below="@id/btnPilih"
-        />
+            />
 
-    <Button
-        android:id="@+id/btnBatal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Batalkan Pewaktu"
-        android:layout_below="@id/btnAktif"
-        />
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:thumb="@drawable/thumb"
+            app:track="@drawable/track"
+            app:showText="false"
+            android:elevation="8dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/intJam"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnUpload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnBatal"
+        android:layout_below="@id/layoutAlarm"
+        android:layout_marginTop="20dp"
         android:text="Upload"
+        android:backgroundTint="@color/baseYellow"
+        android:textColor="@color/baseBlack"
         />
 
 </RelativeLayout>

@@ -29,6 +29,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -47,8 +48,9 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
     FirebaseUser user;
     String userId;
     StorageReference storageReference;
+    DatabaseReference databaseReference;
     FirebaseAuth fAuth;
-    Button resendCode, btnHapus;
+    Button resendCode, btnHapus, btnHapusData;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -73,7 +75,6 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
-
         //toolbar
         setSupportActionBar(toolbar);
 
@@ -97,6 +98,8 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         resendCode = findViewById(R.id.resendCode);
         verifyMsg = findViewById(R.id.verifyMsg);
         btnHapus = findViewById(R.id.btnHapusAkun);
+        btnHapusData = findViewById(R.id.btnHapusData);
+        databaseReference = FirebaseDatabase.getInstance("https://siram-aja-7728f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("tanaman").child(userId);
 
         if(!user.isEmailVerified()){
             verifyMsg.setVisibility(View.VISIBLE);
@@ -158,6 +161,36 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
             }
         });
 
+        btnHapusData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("child",""+databaseReference);
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(profile.this);
+                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        databaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(profile.this,"Berhasil Dihapus", Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(profile.this,"Error :",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setMessage("Apakah Anda yakin menghapus Data ?");
+                builder.show();
+            }
+        });
+
 
 
 
@@ -166,8 +199,8 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot.exists()) {
-                    name.setText(documentSnapshot.getString("Nama"));
-                    email.setText(documentSnapshot.getString("Email"));
+                    name.setText("Nama : "+documentSnapshot.getString("Nama"));
+                    email.setText("Email : "+documentSnapshot.getString("Email"));
                 }else {
                     name.setText("Ini Nama");
                     email.setText("Ini Email");

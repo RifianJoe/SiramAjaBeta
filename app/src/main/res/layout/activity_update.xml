@@ -5,7 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:background="@color/baseBlack"
     tools:context=".update">
+
+    <TextView
+        android:id="@+id/txtDetailData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:textColor="@color/baseWhite"
+        android:text="Detail Data"
+        android:textColorHint="@color/baseWhite"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:backgroundTint="@color/baseWhite"
+        />
 
     <ImageView
         android:id="@+id/viewCameraUpdate"
@@ -13,7 +30,19 @@
         android:layout_height="240dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:src="@color/baseYellow"
+        android:src="@drawable/ic_baseline_photo_camera_24"
+        android:scaleType="centerCrop"
+        android:layout_below="@id/txtDetailData"
+        />
+
+    <TextView
+        android:id="@+id/indicatorAlarmUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indicator"
+        android:visibility="gone"
+        android:layout_toRightOf="@id/viewCameraUpdate"
+        android:layout_marginLeft="10dp"
         />
 
     <Button
@@ -22,57 +51,94 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/viewCameraUpdate"
         android:text="Ambil Foto"
+        android:backgroundTint="@color/ebonyBlack"
+        android:textColor="@color/baseWhite"
         />
 
 
-    <EditText
+    <TextView
         android:id="@+id/txtTanamanUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnCameraUpdate"
-        android:hint="Nama Tanaman"
+        android:textSize="18sp"
+        android:textColor="@color/baseWhite"
+        android:text="Nama Tanaman"
+        android:textColorHint="@color/baseWhite"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:backgroundTint="@color/baseWhite"
         />
 
-    <TextView
-        android:id="@+id/intJamUpdate"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/layoutAlarmUpdate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12.12 PM"
-        android:gravity="center"
         android:layout_below="@id/txtTanamanUpdate"
-        />
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:id="@+id/intJamUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12.12 PM"
+            android:textSize="24sp"
+            android:layout_margin="20dp"
+            android:textColor="@color/baseWhite"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/btnPilihUpdate"
+            android:visibility="visible"
+            />
 
-    <Button
-        android:id="@+id/btnPilihUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pilih Waktu"
-        android:layout_below="@id/intJamUpdate"
-        />
+        <Button
+            android:id="@+id/btnPilihUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Waktu"
+            android:layout_marginTop="20dp"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/ebonyBlack"
+            android:textColor="@color/baseWhite"
+            android:visibility="visible"
+            />
 
-    <Button
-        android:id="@+id/btnAktifUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Aktifkan Pewaktu"
-        android:layout_below="@id/btnPilihUpdate"
-        />
-
-    <Button
-        android:id="@+id/btnBatalUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Batalkan Pewaktu"
-        android:layout_below="@id/btnAktifUpdate"
-        />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchAlarmUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:thumb="@drawable/thumb"
+            app:track="@drawable/track"
+            app:showText="false"
+            android:elevation="8dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/intJamUpdate"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnUploadUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnBatalUpdate"
-        android:text="Update"
-        android:onClick="update"
+        android:layout_below="@id/layoutAlarmUpdate"
+        android:layout_marginTop="20dp"
+        android:text="Upload"
+        android:backgroundTint="@color/baseYellow"
+        android:textColor="@color/baseBlack"
+        android:visibility="gone"
         />
+
+    <Button
+        android:id="@+id/btnDeleteUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Delete"
+        android:backgroundTint="@color/merahWarn"
+        android:textColor="@color/baseBlack"
+        android:visibility="gone"
+        />
+
 
 </RelativeLayout>

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
-    android:layout_margin="16dp"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="@color/baseBlack">
     <LinearLayout
         android:layout_width="wrap_content"
@@ -37,6 +37,9 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:text="Nama Tanaman :"
+                    android:textColor="@color/baseWhite"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
                     />
 
                 <TextView
@@ -44,6 +47,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tanaman"
+                    android:textColor="@color/baseWhite"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
                     />
             </LinearLayout>
             <LinearLayout
@@ -58,6 +64,9 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:text="Siram pada :"
+                    android:textColor="@color/baseWhite"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
                     />
 
                 <TextView
@@ -65,20 +74,45 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12.12"
+                    android:textColor="@color/baseWhite"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
                     />
             </LinearLayout>
         </LinearLayout>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnFloatHapus"
-            android:layout_width="360dp"
-            android:layout_height="36dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_gravity="center"
-            app:backgroundTint="@color/baseYellow"
-            app:fabCustomSize="36dp"
-            app:elevation="8dp"
-            android:src="@drawable/ic_baseline_cancel_24"
-            app:maxImageSize="36dp"
-            />
+            >
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFloatHapus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:backgroundTint="@color/baseYellow"
+                app:fabCustomSize="36dp"
+                app:elevation="8dp"
+                android:src="@drawable/ic_baseline_cancel_24"
+                app:maxImageSize="36dp"
+                android:layout_margin="20dp"
+                android:visibility="gone"
+                />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFloatDetail"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:backgroundTint="@color/baseYellow"
+                app:fabCustomSize="36dp"
+                app:elevation="8dp"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:maxImageSize="36dp"
+                android:layout_margin="20dp"
+                />
+        </LinearLayout>
     </LinearLayout>
 
 

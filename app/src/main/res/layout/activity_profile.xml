@@ -20,8 +20,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
+        android:background="@color/baseBlack"
         >
+
+    <RelativeLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/baseYellow"
+        >
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
         <TextView
             android:id="@+id/verifyMsg"
@@ -29,6 +42,7 @@
             android:layout_height="wrap_content"
             android:text="Email belum diverifikasi!"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/merahWarn"
             android:visibility="gone"
             />
 
@@ -47,16 +61,25 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/resendCode"
-            android:layout_marginTop="20dp"
             android:text="Profile"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/wolland"
             />
+    </RelativeLayout>
 
         <TextView
             android:id="@+id/profileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/headerProfile"
+            android:layout_below="@id/headerLayout"
             android:text="Nama"
+            android:layout_margin="20dp"
+            android:textColor="@color/baseWhite"
+            android:textSize="20sp"
+            android:fontFamily="casual"
             />
 
         <TextView
@@ -65,6 +88,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/profileName"
             android:text="Email"
+            android:layout_margin="20dp"
+            android:textColor="@color/baseWhite"
+            android:textSize="20sp"
+            android:fontFamily="casual"
             />
 
         <Button
@@ -76,7 +103,18 @@
             android:layout_margin="20dp"
             android:text="Hapus Akun"
             android:textColor="@color/black"
-            android:background="@drawable/stroke"
+            android:backgroundTint="@color/merahWarn"
+            />
+        <Button
+            android:id="@+id/btnHapusData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnHapusAkun"
+            android:layout_margin="30dp"
+            android:text="Hapus Data"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/merahWarn"
+
             />
 
     </RelativeLayout>

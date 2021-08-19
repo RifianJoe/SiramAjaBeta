@@ -2,10 +2,11 @@
     <string name="app_name">Siram Aja</string>
     <string name="navigation_drawer_open">Navigasi Terbuka</string>
     <string name="navigation_drawer_close">Navigasi Tertutup</string>
-    <string name="slide_title_1">Slide 1</string>
-    <string name="slide_title_2">Slide 2</string>
-    <string name="slide_title_3">Slide 3</string>
+    <string name="slide_title_1">Siram Aja</string>
+    <string name="slide_title_2">Siram Aja</string>
+    <string name="slide_title_3">Siram Aja</string>
     <string name="slide_desc_1">Aplikasi ini diperuntukkan untuk seluruh kalangan yang memiliki tanaman dan senang untuk menyiram tanaman</string>
     <string name="slide_desc_2">Kadangkala kita sering lupa untuk menyiram tanaman karena terlalu sibuk atau asik dengan kegiatan atau suatu hal yang sedang dikerjakan</string>
     <string name="slide_desc_3">Maka dengan itu, hadirlah aplikasi Siram Aja untuk dengan fitur reminder untuk menyiram tanaman dan publikasi foto tanaman</string>
+    <string name="info">Siram Aja merupakan aplikasi pengingat semua orang untuk menyiram tanaman. Selain itu terdapat fitur untuk menambahkan foto tanaman sebagai dokumentasi</string>
 </resources>

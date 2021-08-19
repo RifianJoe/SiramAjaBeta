@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/baseBlack"
-    android:padding="20dp"
+    android:background="@color/ebonyBlack"
     tools:context=".walkthrough">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         >
 
     </androidx.viewpager.widget.ViewPager>
@@ -20,19 +19,18 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
+        android:padding="20dp"
         >
 
         <Button
             android:id="@+id/btnWalkthrough"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/baseWhite"
+            android:textColor="@color/baseBlack"
             android:text="Yuk Cobain"
             android:visibility="invisible"
             android:onClick="pindahDaftar"
-            android:background="@drawable/btn_stroke"/>
-
-
+            android:background="@drawable/stroke"/>
 
         <Button
             android:id="@+id/btnNext"

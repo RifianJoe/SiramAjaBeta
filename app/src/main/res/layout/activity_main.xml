@@ -16,20 +16,14 @@
         android:id="@+id/nav_view"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
+        android:background="@color/baseBlack"
         android:layout_gravity="start"
+        app:itemTextColor="@color/baseWhite"
         />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            android:layout_alignParentStart="true"/>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -38,40 +32,61 @@
             <RelativeLayout
                 android:id="@+id/headerLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#f6b010"
+                android:layout_height="150dp"
+                android:background="@color/baseYellow"
                 >
-             <TextView
-                 android:id="@+id/txtWelcome"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerHorizontal="true"
-                 android:text="Selamat Datang !"
-                 android:layout_margin="20dp"
-                 android:textColor="@color/black"
-                 android:textStyle="normal"
-                 android:textSize="20dp"
-                 />
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    app:navigationIcon="@drawable/ic_baseline_menu_24" />
+                 <TextView
+                     android:id="@+id/txtWelcome"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerHorizontal="true"
+                     android:text="Selamat Datang !"
+                     android:layout_margin="20dp"
+                     android:textColor="@color/black"
+                     android:textStyle="normal"
+                     android:textSize="20sp"
+                     android:fontFamily="@font/wolland"
+                     />
+
+                <TextView
+                    android:id="@+id/headerMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar Tanaman"
+                    android:layout_below="@id/txtWelcome"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:layout_margin="20dp"
+                    android:fontFamily="@font/wolland"
+                    />
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/headerMain"
+                android:id="@+id/txtVerify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daftar Tanaman"
-                android:layout_below="@id/txtWelcome"
+                android:text="Silakan Konfirmasi Email Terlebih Dahulu."
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="30dp"
+                android:layout_below="@id/headerLayout"
+                android:textStyle="normal"
+                android:textColor="@color/merahWarn"
+                android:visibility="gone"
                 />
-            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listTanaman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/headerLayout"
+                android:layout_below="@id/txtVerify"
                 android:layout_alignParentBottom="true"
                 />
         </RelativeLayout>
@@ -91,6 +106,8 @@
             app:maxImageSize="60dp"
             android:onClick="pindahTambah"
             />
+
+
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

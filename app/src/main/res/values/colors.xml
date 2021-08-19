@@ -11,4 +11,8 @@
     <color name="ebonyBlack">#3C3C3A</color>
     <color name="baseWhite">#f8f9fa</color>
     <color name="baseYellow">#ffc800</color>
+    <color name="btnClick">#4fe086</color>
+    <color name="btnPress">#4f80e2</color>
+    <color name="merahWarn">#df4759</color>
+    <color name="yellowDark">#F6B010</color>
 </resources>

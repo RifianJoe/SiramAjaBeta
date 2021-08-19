@@ -1,12 +1,5 @@
 package com.rifiandev.siramaja;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -17,7 +10,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,10 +19,18 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,7 +47,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.rifiandev.siramaja.databinding.ActivityCameraBinding;
-import com.rifiandev.siramaja.databinding.ActivityMainBinding;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -62,8 +61,8 @@ public class camera extends AppCompatActivity {
     ImageView selectedImage;
     Button cameraBtn,uploadBtn;
     EditText txtTanam/*,txtJam*/;
-    TextView txtJam;
-    String currentPhotoPath, userId,namaTanaman, fotoTanaman, jamSiram, users, key;
+    TextView txtJam, indicatorAlarm;
+    String currentPhotoPath, userId,namaTanaman, fotoTanaman, jamSiram, users, key, indicator;
     int hour,minute, hourSiram, minuteSiram;
     FirebaseAuth fAuth;
     StorageReference storageReference;
@@ -113,6 +112,7 @@ public class camera extends AppCompatActivity {
         uploadBtn = findViewById(R.id.btnUpload); //setelah ada ini error
         txtTanam = findViewById(R.id.txtTanaman);
         txtJam = findViewById(R.id.intJam);
+        indicatorAlarm = findViewById(R.id.indicatorAlarm);
 
         //users
         fAuth = FirebaseAuth.getInstance();
@@ -153,7 +153,7 @@ public class camera extends AppCompatActivity {
             }
         });
 
-        binding.btnAktif.setOnClickListener(new View.OnClickListener() {
+        /*binding.btnAktif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -168,6 +168,17 @@ public class camera extends AppCompatActivity {
 
                 cancelAlarm();
 
+            }
+        });*/
+
+        binding.switchAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if ((isChecked)){
+                    setAlarm();
+                } else {
+                    cancelAlarm();
+                }
             }
         });
 
@@ -184,6 +195,9 @@ public class camera extends AppCompatActivity {
         }
 
         alarmManager.cancel(pendingIntent);
+
+        indicatorAlarm.setText("Mati");
+        //indicatorAlarm.setVisibility(View.VISIBLE);
         Toast.makeText(this,"Alarm Cancelled", Toast.LENGTH_SHORT).show();
 
     }
@@ -198,6 +212,9 @@ public class camera extends AppCompatActivity {
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);
+
+        indicatorAlarm.setText("Nyala");
+        //indicatorAlarm.setVisibility(View.VISIBLE);
 
         Toast.makeText(this,"Alarm Set Succesfully",Toast.LENGTH_SHORT).show();
 
@@ -230,6 +247,9 @@ public class camera extends AppCompatActivity {
                 calendar.set(Calendar.MINUTE,picker.getMinute());
                 calendar.set(Calendar.SECOND,0);
                 calendar.set(Calendar.MILLISECOND,0);
+
+                binding.switchAlarm.setVisibility(View.VISIBLE);
+                binding.intJam.setVisibility(View.VISIBLE);
             }
         });
 
@@ -301,6 +321,16 @@ public class camera extends AppCompatActivity {
                 uploadImageToFirebase(f.getName(), contentUri);
 
                 Picasso.get().load(contentUri).into(selectedImage);
+
+                cameraBtn.setVisibility(View.GONE);
+
+                selectedImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        askCameraPermissions();
+                        Toast.makeText(camera.this, "Tombol Kamera di Klik", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
             }
@@ -403,24 +433,31 @@ public class camera extends AppCompatActivity {
                         namaTanaman = txtTanam.getText().toString().trim();
                         fotoTanaman = downloadUri.toString();
                         jamSiram = txtJam.getText().toString();
+                        indicator = indicatorAlarm.getText().toString();
                         hourSiram = picker.getHour();
                         minuteSiram = picker.getMinute();
                         siramModel upload = new siramModel(namaTanaman, //upload namaTanaman
                                 fotoTanaman, //uploadLinkGambar
                                 jamSiram, //uploadJam
                                 userId, //uploadUserid
+                                indicator, //uploadIndicator
                                 hourSiram, //jam untuk alarm
                                 minuteSiram);  //menit untuk alarm
 
-                        databaseReference.child("Data").push().setValue(upload);
+                        databaseReference/*.child("Data")*/.push().setValue(upload).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(camera.this,"Upload Data berhasil",Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(camera.this,"Upload Data berhasil",Toast.LENGTH_LONG).show();
-
-                        Intent intent = new Intent(camera.this,MainActivity.class);
-                        startActivity(intent);
-
-
-
+                                Intent intent = new Intent(camera.this,MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(camera.this,"Upload Gagal : " +e.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         //String uploadId = databaseReference.push().getKey();
                         //databaseReference.child(uploadId).setValue(upload);
 
